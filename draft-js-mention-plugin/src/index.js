@@ -86,6 +86,8 @@ const createMentionPlugin = (config = {}) => {
     positionSuggestions = defaultPositionSuggestions,
     mentionComponent,
     mentionTrigger = '@',
+    supportWhitespace = false,
+    maxSuggestionsCharacters = 20,
   } = config;
   const mentionSearchProps = {
     ariaProps,
@@ -104,7 +106,7 @@ const createMentionPlugin = (config = {}) => {
         component: decorateComponentWithProps(Mention, { theme, mentionPrefix, mentionComponent }),
       },
       {
-        strategy: mentionSuggestionsStrategy(mentionTrigger),
+        strategy: mentionSuggestionsStrategy(mentionTrigger, supportWhitespace, maxSuggestionsCharacters),
         component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
       },
     ],
